@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 5000
 
+const config = require('./config/key');
+
 //application/x-www-form-urlencoded
 //app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.urlencoded({extended:true}));
@@ -14,7 +16,7 @@ app.use(express.json());
 const{ User } = require("./models/User");
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://ohasis:1234@boilerplate.l0hi1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+mongoose.connect(config.mongoURI,{
     useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true, useFindAndModify:false
 }).then(() => console.log('MongoDB Conntected...')) //mongoDB와 잘 연결되었다는 문구 출력
   .catch(err => console.log(err))
