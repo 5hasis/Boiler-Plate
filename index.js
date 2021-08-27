@@ -4,7 +4,7 @@ const port = 5000
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const{ User } = require("./models/User");
-const{ 며소 } = require("./middleware/auth");
+const{ auth } = require("./middleware/auth");
 
 //application/x-www-form-urlencoded
 //app.use(bodyParser.urlencoded({extended:true}));
@@ -79,9 +79,7 @@ app.post('/api/users/login', (req,res) => {
       })
 
     })
-
   })
-
 })
 
 
@@ -99,4 +97,15 @@ app.get('/api/users/auth', auth,(req, res) => {
     image: req.user.image
   })
 
+})
+
+app.get('/api/users/logout',auth, (req,res) => {
+  User.findByIdAndUpdate({_id: req.user._id},
+    {token:""},
+    (err,user) => {
+      if(err) return res.json({successfalse, err});
+      return res.status(200).send({
+        success:true
+      })
+    })
 })

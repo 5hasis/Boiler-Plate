@@ -81,7 +81,7 @@ userSchema.methods.generateToken = function(callbackf){
     })
 }
 
-userSchema.statics.findByToken = function(token, cb){
+userSchema.statics.findByToken = function(token, callbackf){
     var user = this;
 
 
@@ -92,8 +92,8 @@ userSchema.statics.findByToken = function(token, cb){
 
         //mongoDB에 있는 함수
         user.findOne({"_id":decoded, "token":token}, function(err,user){
-            if(err) return cb(err);
-            cb(null, user)
+            if(err) return callbackf(err);
+            callbackf(null, user)
         }) 
     })
 }
