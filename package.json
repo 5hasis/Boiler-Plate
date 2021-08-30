@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "backend": "nodemon index.js",
+    "start": "node server/index.js",
+    "backend": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ohasis",
@@ -16,8 +16,7 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.7",
-    "save": "^2.4.0"
+    "mongoose": "^5.13.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

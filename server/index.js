@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 5000
+
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const{ User } = require("./models/User");
@@ -23,13 +23,17 @@ mongoose.connect(config.mongoURI,{
 }).then(() => console.log('MongoDB Conntected...')) //mongoDB와 잘 연결되었다는 문구 출력
   .catch(err => console.log(err))
 
-
+const port = 5000
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
 app.get('/', (req, res) => {
   res.send('Hello World!앙뇽~')
+})
+
+app.get('/api/hello', (req,res)=>{
+  res.send("안녕하세요~")
 })
 
 //회원가입을 위한  register route
